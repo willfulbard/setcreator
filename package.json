@@ -1,0 +1,21 @@
+{
+  "name": "TuneSetCreator",
+  "version": "0.1.0",
+  "description": "Tool for making tune sets for Irish set dances",
+  "author": "Will Wheeler",
+  "scripts": {
+  },
+  "license": "UNLICENSED",
+  "private": false,
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "mocha": "^1.3.4",
+    "sinon": "^1.17.2",
+    "gulp": "^3.8.5"
+  },
+  "dependencies": {
+    "body-parser": "^1.4.3",
+    "express": "^4.4.5",
+    "mongoose": "^4.1.0"
+  }
+}
