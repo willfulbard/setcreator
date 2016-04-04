@@ -12,10 +12,5 @@ module.exports = {
       console.log('Error allDances in danceController.js: ', err.message);
       next();
     });
-  },
-
-  newDance: function (req, res, next) {
-    var danceName = req.body.danceName;
-    res.json(danceName);
   }
 };
