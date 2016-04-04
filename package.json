@@ -3,8 +3,7 @@
   "version": "0.1.0",
   "description": "Tool for making tune sets for Irish set dances",
   "author": "Will Wheeler",
-  "scripts": {
-  },
+  "scripts": {},
   "license": "UNLICENSED",
   "private": false,
   "devDependencies": {
@@ -16,6 +15,7 @@
   "dependencies": {
     "body-parser": "^1.4.3",
     "express": "^4.4.5",
-    "mongoose": "^4.1.0"
+    "mongoose": "^4.1.0",
+    "nodemon": "^1.9.1"
   }
 }
