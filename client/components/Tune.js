@@ -11,7 +11,7 @@ class Tune extends React.Component {
   }
 
   render() {
-    return (<div className="clickable" onClick={this.selectTune.bind(this)}>{this.props.tune.name}</div>);
+    return (<div className="clickable" onClick={this.selectTune.bind(this)}>{this.props.tune.name.replace(/&#039;/g, "'")}</div>);
   }
 }
 
