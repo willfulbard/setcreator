@@ -3,11 +3,12 @@ class App extends React.Component {
     super(props);
     this.state = {
       page: 'index',
-      selectedDance: {name: 'selected dance'},
-      selectedFigure: {name: 'selected figure'},
+      selectedDance: false,
+      selectedFigure: false,
       selectedTunes: [], //For tunes that have been selected so they are filtered
       tunesForFigures: {}, //Mapping of tune selections to figures
-      dances: []
+      dances: [],
+      figures: []
     };
     this.getDances();
   }
@@ -32,7 +33,16 @@ class App extends React.Component {
     console.log('Click Event', e.data);
     if (e.data.event === 'selectDance') {
       this.setState({
-        selectedDance: e.data.dance
+        selectedDance: e.data.dance,
+        selectedFigure: false
+      });
+    } else if (e.data.event === 'selectFigure') {
+      this.setState({
+        selectedFigure: e.data.figure
+      });
+    } else if (e.data.event === 'selectTune') {
+      this.setState({
+        selectedTunes: this.state.selectedTunes.concat([e.data.tune])
       });
     }
   }
@@ -43,7 +53,7 @@ class App extends React.Component {
           <Nav />
         </div>
         <div onClick={this.clickEvent.bind(this)}>
-          <PageRender page={this.state.page} dances={this.state.dances} />
+          <PageRender selectDance={this.state.selectedDance} selectedFigure={this.state.selectFigure} page={this.state.page} dances={this.state.dances} />
         </div>
       </div>);
   }
