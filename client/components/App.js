@@ -7,7 +7,10 @@ class App extends React.Component {
   }
 
   render() {
-    return (<div>This is something</div>);
+    return (<div>
+        <Nav />
+        <PageRender page={this.state.page} />
+      </div>);
   }
 }
 
