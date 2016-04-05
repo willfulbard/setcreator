@@ -72,6 +72,7 @@ class App extends React.Component {
         selectedFigure: false
       });
     } else if (e.data.event === 'selectFigure') {
+      //Could have used Object.assign
       var tunesForFigures = $.extend({}, this.state.tunesForFigures);
       if (!this.state.tunesForFigures[e.data.figure._id]) {
         tunesForFigures[e.data.figure._id] = [];
