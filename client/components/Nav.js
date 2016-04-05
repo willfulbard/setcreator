@@ -10,9 +10,11 @@ class Nav extends React.Component {
 
   render() {
     return (
-        <ul>
-        {this.pages.map(function (page, index) { return (<li key={index}><NavEntry page={page} /></li>); })}
-        </ul>);
+        <div className="nav">
+          <ul>
+          {this.pages.map(function (page, index) { return (<li key={index}><NavEntry page={page} /></li>); })}
+          </ul>
+        </div>);
   }
 }
 

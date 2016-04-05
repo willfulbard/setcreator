@@ -11,7 +11,7 @@ class TuneSelected extends React.Component {
   }
 
   render() {
-    return (<div onClick={this.selectTuneSelected.bind(this)}>{this.props.tuneSelected.name}</div>);
+    return (<div className="clickable" onClick={this.selectTuneSelected.bind(this)}>{this.props.tuneSelected.name}</div>);
   }
 }
 

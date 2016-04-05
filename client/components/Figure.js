@@ -11,7 +11,7 @@ class Figure extends React.Component {
   }
 
   render() {
-    return (<div onClick={this.selectFigure.bind(this)}>{this.props.figure.name}</div>);
+    return (<div className="clickable" onClick={this.selectFigure.bind(this)}>{this.props.figure.name}</div>);
   }
 }
 

@@ -11,7 +11,7 @@ class Dance extends React.Component {
   }
 
   render() {
-    return (<div onClick={this.selectDance.bind(this)}>{this.props.dance.name}</div>);
+    return (<div className="clickable" onClick={this.selectDance.bind(this)}>{this.props.dance.name}</div>);
   }
 }
 
