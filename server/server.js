@@ -1,3 +1,5 @@
+//github.com/naomiajacobs/reactBoilerplate
+
 var express = require('express');
 var mongoose = require('mongoose');
 
