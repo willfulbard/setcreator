@@ -15,8 +15,8 @@ class TuneList extends React.Component {
           {this.props.tunes
             .filter(function(tune, index) {
               return this.props.selectedTunes.filter(function(selectedTune) {
-                return selectedTune.id !== tune.id;
-              })
+                return selectedTune.id === tune.id;
+              }).length < 1;
             }, this)
             .map(function(tune, index) { 
               return (<Tune key={index} tune={tune} />); 
