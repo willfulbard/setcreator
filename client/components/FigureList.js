@@ -9,7 +9,13 @@ class FigureList extends React.Component {
       return (<div>Please select a dance first</div>);
     } else {
       return (<div className="figure-list">
-        {this.props.figures.map(function(figure, index) { return (<Figure key={index} figure={figure} />); }.bind(this))}
+        {this.props.figures
+          .filter(function(figure) {
+            return figure._dance === this.props.selectedDance._id;
+          }, this)
+          .map(function(figure, index) { 
+            return (<Figure key={index} figure={figure} />); 
+          }, this)}
         </div>);
     }
   }
