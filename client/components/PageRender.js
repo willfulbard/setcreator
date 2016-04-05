@@ -6,9 +6,9 @@ class PageRender extends React.Component {
   render() {
     switch(this.props.page) {
       case 'figurelist':
-        return (<FigureList />);
+        return (<FigureList figures={this.props.figures} selectedDance={this.props.selectedDance} />);
       case 'tunelist':
-        return (<TuneList />);
+        return (<TuneList tunes={this.props.tunes} selectedFigure={this.props.selectFigure} />);
       default:
         return (<DanceList dances={this.props.dances} />);
     }

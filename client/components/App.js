@@ -23,7 +23,6 @@ class App extends React.Component {
   }
 
   changePage(e) {
-    console.log('Change Page AppLevel', e.data);
     this.setState({
       page: e.data.page
     });
@@ -32,6 +31,7 @@ class App extends React.Component {
   clickEvent(e) {
     console.log('Click Event', e.data);
     if (e.data.event === 'selectDance') {
+      console.log('select dance', e.data);
       this.setState({
         selectedDance: e.data.dance,
         selectedFigure: false
@@ -53,7 +53,7 @@ class App extends React.Component {
           <Nav />
         </div>
         <div onClick={this.clickEvent.bind(this)}>
-          <PageRender selectDance={this.state.selectedDance} selectedFigure={this.state.selectFigure} page={this.state.page} dances={this.state.dances} />
+          <PageRender selectedDance={this.state.selectedDance} selectedFigure={this.state.selectFigure} page={this.state.page} figures={this.state.figures} dances={this.state.dances} tunes={this.state.tunes} />
         </div>
       </div>);
   }

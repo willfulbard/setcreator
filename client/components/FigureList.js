@@ -4,6 +4,7 @@ class FigureList extends React.Component {
   }
 
   render() {
+    console.log('Render Figures', this.props);
     if (!this.props.selectedDance) {
       return (<div>Please select a dance first</div>);
     } else {
