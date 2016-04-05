@@ -28,10 +28,23 @@ class App extends React.Component {
     });
   }
 
+  clickEvent(e) {
+    console.log('Click Event', e.data);
+    if (e.data.event === 'selectDance') {
+      this.setState({
+        selectedDance: e.data.dance
+      });
+    }
+  }
+
   render() {
-    return (<div onClick={this.changePage.bind(this)}>
-        <Nav />
-        <PageRender page={this.state.page} dances={this.state.dances} />
+    return (<div>
+        <div onClick={this.changePage.bind(this)}>
+          <Nav />
+        </div>
+        <div onClick={this.clickEvent.bind(this)}>
+          <PageRender page={this.state.page} dances={this.state.dances} />
+        </div>
       </div>);
   }
 }
