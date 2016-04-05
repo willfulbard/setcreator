@@ -4,6 +4,7 @@ class NavEntry extends React.Component {
   }
 
   changePage(e) {
+    console.log('Change Page NavEntry');
     e.data = this.props.page;
   }
 

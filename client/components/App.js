@@ -6,8 +6,15 @@ class App extends React.Component {
     };
   }
 
+  changePage(e) {
+    console.log('Change Page AppLevel', e.data);
+    this.setState({
+      page: e.data.page
+    });
+  }
+
   render() {
-    return (<div>
+    return (<div onClick={this.changePage.bind(this)}>
         <Nav />
         <PageRender page={this.state.page} />
       </div>);
