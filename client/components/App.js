@@ -8,10 +8,33 @@ class App extends React.Component {
       selectedTunes: [], //For tunes that have been selected so they are filtered
       tunesForFigures: {}, //Mapping of tune selections to figures
       dances: [],
-      figures: []
+      figures: [],
+      tunes: [],
+      loadingData: false,
+      pagesFetched: 0
     };
     this.getDances();
     this.getFigures();
+  }
+
+  getTunes(count, max) {
+    count = count || 1;
+    max = max || 5;
+    if (count === max) {
+      this.setState({
+        loadingData: false
+      });
+      return;
+    } 
+    $.get('https://thesession.org/tunes/popular/' + this.state.selectedFigure.type + '?format=json&perpage=50&page=' + count,
+        function(tunes) {
+          console.log('got', tunes);
+          this.setState({
+            tunes: this.state.tunes.concat(tunes.tunes),
+            pagesFetched: count
+          });
+          this.getTunes(count+1);
+        }.bind(this));
   }
 
   getDances() {
@@ -49,6 +72,11 @@ class App extends React.Component {
       });
     } else if (e.data.event === 'selectFigure') {
       this.setState({
+        loadingData: true,
+        tunes: []
+      });
+      this.getTunes();
+      this.setState({
         page: 'tunelist',
         selectedFigure: e.data.figure
       });
@@ -65,7 +93,7 @@ class App extends React.Component {
           <Nav />
         </div>
         <div onClick={this.clickEvent.bind(this)}>
-          <PageRender selectedDance={this.state.selectedDance} selectedFigure={this.state.selectFigure} page={this.state.page} figures={this.state.figures} dances={this.state.dances} tunes={this.state.tunes} />
+          <PageRender loadingData={this.state.loadingData} selectedTunes={this.state.selectedTunes} selectedDance={this.state.selectedDance} selectedFigure={this.state.selectedFigure} page={this.state.page} figures={this.state.figures} dances={this.state.dances} tunes={this.state.tunes} />
         </div>
       </div>);
   }

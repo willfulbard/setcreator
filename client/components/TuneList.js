@@ -6,9 +6,21 @@ class TuneList extends React.Component {
   render() {
     if (!this.props.selectedFigure) {
       return (<div>Please select a figure first</div>);
+    } else if (this.props.loadingData) {
+      return (<div>Loading...</div>);
     } else {
+      console.log('tuneList: ', this.props.tunes.length);
       return (<div className="tune-list">
-        {this.props.tunes.map(function(tune, index) { return (<Tune key={index} tune={tune} />); }.bind(this))}
+        {this.props.tunes
+          .map(function(tune, index) { 
+            return (<Tune key={index} tune={tune} />); 
+          }, this)
+          .filter(function(tune, index) {
+            return this.props.selectedTunes.filter(function(selectedTune) {
+              return selectedTune.id !== tune.id;
+            })
+
+          }, this)}
         </div>);
     }
   }
