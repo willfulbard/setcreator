@@ -95,7 +95,17 @@ class App extends React.Component {
           <Nav />
         </div>
         <div onClick={this.clickEvent.bind(this)}>
-          <PageRender tunesForFigures={this.state.tunesForFigures} loadingData={this.state.loadingData} selectedTunes={this.state.selectedTunes} selectedDance={this.state.selectedDance} selectedFigure={this.state.selectedFigure} page={this.state.page} figures={this.state.figures} dances={this.state.dances} tunes={this.state.tunes} />
+          <PageRender 
+            tunesForFigures={this.state.tunesForFigures} 
+            loadingData={this.state.loadingData} 
+            selectedTunes={this.state.selectedTunes} 
+            selectedDance={this.state.selectedDance} 
+            selectedFigure={this.state.selectedFigure} 
+            page={this.state.page} 
+            figures={this.state.figures} 
+            dances={this.state.dances} 
+            tunes={this.state.tunes} 
+          />
         </div>
       </div>);
   }
