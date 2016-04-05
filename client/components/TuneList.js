@@ -12,6 +12,8 @@ class TuneList extends React.Component {
       console.log('tuneList: ', this.props.tunes.length);
       console.log('tunesForFigures: ', this.props.tunesForFigures);
       return (<div>
+          <h2>Tunes for {this.props.selectedDance.name}</h2>
+          <h2>{this.props.selectedFigure.name} ({this.props.selectedFigure.type}, {this.props.selectedFigure.barcount} bars)</h2>
           <div className="tune-list">
           <h3>Tunes:</h3>
           {this.props.tunes
