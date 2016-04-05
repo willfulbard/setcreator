@@ -73,7 +73,9 @@ class App extends React.Component {
       });
     } else if (e.data.event === 'selectFigure') {
       var tunesForFigures = $.extend({}, this.state.tunesForFigures);
-      tunesForFigures[e.data.figure._id] = [];
+      if (!this.state.tunesForFigures[e.data.figure._id]) {
+        tunesForFigures[e.data.figure._id] = [];
+      }
       this.setState({
         loadingData: true,
         tunes: [],
@@ -83,8 +85,11 @@ class App extends React.Component {
       });
       this.getTunes(1, 5, e.data.figure.type);
     } else if (e.data.event === 'selectTune') {
+      var tunesForFigures = $.extend({}, this.state.tunesForFigures);
+      tunesForFigures[this.state.selectedFigure._id].push(e.data.tune);
       this.setState({
-        selectedTunes: this.state.selectedTunes.concat([e.data.tune])
+        selectedTunes: this.state.selectedTunes.concat([e.data.tune]),
+        tunesForFigures: tunesForFigures
       });
     }
   }
