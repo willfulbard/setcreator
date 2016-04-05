@@ -1,0 +1,9 @@
+div.tune-list {
+  width: 50%;
+  float: left;
+}
+
+div.tunes-selected {
+  width: 50%;
+  float: right;
+}

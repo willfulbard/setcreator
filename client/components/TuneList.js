@@ -12,6 +12,7 @@ class TuneList extends React.Component {
       console.log('tuneList: ', this.props.tunes.length);
       return (<div>
           <div className="tune-list">
+          <div>Tunes:</div>
           {this.props.tunes
             .filter(function(tune, index) {
               return this.props.selectedTunes.filter(function(selectedTune) {
@@ -24,6 +25,7 @@ class TuneList extends React.Component {
 
           </div>
           <div className="tunes-selected">
+          <div>Your Set:</div>
           {this.props.tunesForFigures[this.props.selectedFigure._id]
             .map(function(tune, index) { 
               return (<TuneSelected key={index} tuneSelected={tune} />); 
