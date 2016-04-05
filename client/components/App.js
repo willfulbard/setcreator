@@ -11,6 +11,7 @@ class App extends React.Component {
       figures: []
     };
     this.getDances();
+    this.getFigures();
   }
 
   getDances() {
@@ -18,6 +19,15 @@ class App extends React.Component {
       console.log('got dances', data);
       this.setState({
         dances: data
+      });
+    }.bind(this));
+  }
+
+  getFigures() {
+    $.get('/api/figures', function(data) {
+      console.log('got figures', data);
+      this.setState({
+        figures: data
       });
     }.bind(this));
   }
