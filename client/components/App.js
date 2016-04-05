@@ -43,11 +43,13 @@ class App extends React.Component {
     if (e.data.event === 'selectDance') {
       console.log('select dance', e.data);
       this.setState({
+        page: 'figurelist',
         selectedDance: e.data.dance,
         selectedFigure: false
       });
     } else if (e.data.event === 'selectFigure') {
       this.setState({
+        page: 'tunelist',
         selectedFigure: e.data.figure
       });
     } else if (e.data.event === 'selectTune') {
