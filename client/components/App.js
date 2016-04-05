@@ -3,11 +3,22 @@ class App extends React.Component {
     super(props);
     this.state = {
       page: 'index',
-      dance: {name: 'selected dance'},
-      figure: {name: 'selected figure'},
+      selectedDance: {name: 'selected dance'},
+      selectedFigure: {name: 'selected figure'},
       selectedTunes: [], //For tunes that have been selected so they are filtered
-      tunesForFigures: {} //Mapping of tune selections to figures
+      tunesForFigures: {}, //Mapping of tune selections to figures
+      dances: []
     };
+    this.getDances();
+  }
+
+  getDances() {
+    $.get('/api/dances', function(data) {
+      console.log('got dances', data);
+      this.setState({
+        dances: data
+      });
+    }.bind(this));
   }
 
   changePage(e) {
@@ -20,7 +31,7 @@ class App extends React.Component {
   render() {
     return (<div onClick={this.changePage.bind(this)}>
         <Nav />
-        <PageRender page={this.state.page} />
+        <PageRender page={this.state.page} dances={this.state.dances} />
       </div>);
   }
 }
