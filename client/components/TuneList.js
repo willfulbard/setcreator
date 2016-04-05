@@ -7,7 +7,7 @@ class TuneList extends React.Component {
     if (!this.props.selectedFigure) {
       return (<div>Please select a figure first</div>);
     } else if (this.props.loadingData) {
-      return (<div>Loading...</div>);
+      return (<div><img src="/loading.gif" /></div>);
     } else {
       console.log('tuneList: ', this.props.tunes.length);
       return (<div>
