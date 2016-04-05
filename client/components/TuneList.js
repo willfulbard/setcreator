@@ -10,17 +10,25 @@ class TuneList extends React.Component {
       return (<div>Loading...</div>);
     } else {
       console.log('tuneList: ', this.props.tunes.length);
-      return (<div className="tune-list">
-        {this.props.tunes
-          .map(function(tune, index) { 
-            return (<Tune key={index} tune={tune} />); 
-          }, this)
-          .filter(function(tune, index) {
-            return this.props.selectedTunes.filter(function(selectedTune) {
-              return selectedTune.id !== tune.id;
-            })
+      return (<div>
+          <div className="tune-list">
+          {this.props.tunes
+            .filter(function(tune, index) {
+              return this.props.selectedTunes.filter(function(selectedTune) {
+                return selectedTune.id !== tune.id;
+              })
+            }, this)
+            .map(function(tune, index) { 
+              return (<Tune key={index} tune={tune} />); 
+            }, this)}
 
-          }, this)}
+          </div>
+          <div className="tunes-selected">
+          {this.props.tunesForFigures[this.props.selectedFigure._id]
+            .map(function(tune, index) { 
+              return (<TuneSelected key={index} tuneSelected={tune} />); 
+            }, this)}
+          </div>
         </div>);
     }
   }

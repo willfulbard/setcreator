@@ -17,24 +17,25 @@ class App extends React.Component {
     this.getFigures();
   }
 
-  getTunes(count, max) {
-    count = count || 1;
-    max = max || 5;
+  getTunes(count, max, type) {
     if (count === max) {
       this.setState({
         loadingData: false
       });
       return;
     } 
-    $.get('https://thesession.org/tunes/popular/' + this.state.selectedFigure.type + '?format=json&perpage=50&page=' + count,
-        function(tunes) {
-          console.log('got', tunes);
-          this.setState({
-            tunes: this.state.tunes.concat(tunes.tunes),
-            pagesFetched: count
-          });
-          this.getTunes(count+1);
-        }.bind(this));
+
+    var apiCall = 'https://thesession.org/tunes/popular/' + type + '?format=json&perpage=50&page=' + count;
+    console.log('checking the session.org at: ', apiCall);
+
+    $.get(apiCall, function(tunes) {
+        console.log('got', tunes);
+        this.setState({
+          tunes: this.state.tunes.concat(tunes.tunes),
+          pagesFetched: count
+        });
+        this.getTunes(count+1, max, type);
+      }.bind(this));
   }
 
   getDances() {
@@ -71,15 +72,16 @@ class App extends React.Component {
         selectedFigure: false
       });
     } else if (e.data.event === 'selectFigure') {
+      var tunesForFigures = $.extend({}, this.state.tunesForFigures);
+      tunesForFigures[e.data.figure._id] = [];
       this.setState({
         loadingData: true,
-        tunes: []
-      });
-      this.getTunes();
-      this.setState({
+        tunes: [],
+        tunesForFigures: tunesForFigures,
         page: 'tunelist',
         selectedFigure: e.data.figure
       });
+      this.getTunes(1, 5, e.data.figure.type);
     } else if (e.data.event === 'selectTune') {
       this.setState({
         selectedTunes: this.state.selectedTunes.concat([e.data.tune])
@@ -93,7 +95,7 @@ class App extends React.Component {
           <Nav />
         </div>
         <div onClick={this.clickEvent.bind(this)}>
-          <PageRender loadingData={this.state.loadingData} selectedTunes={this.state.selectedTunes} selectedDance={this.state.selectedDance} selectedFigure={this.state.selectedFigure} page={this.state.page} figures={this.state.figures} dances={this.state.dances} tunes={this.state.tunes} />
+          <PageRender tunesForFigures={this.state.tunesForFigures} loadingData={this.state.loadingData} selectedTunes={this.state.selectedTunes} selectedDance={this.state.selectedDance} selectedFigure={this.state.selectedFigure} page={this.state.page} figures={this.state.figures} dances={this.state.dances} tunes={this.state.tunes} />
         </div>
       </div>);
   }
