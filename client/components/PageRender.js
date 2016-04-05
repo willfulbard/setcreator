@@ -10,7 +10,7 @@ class PageRender extends React.Component {
       case 'tunelist':
         return (<TuneList />);
       default:
-        return (<DanceList />);
+        return (<DanceList dances={this.props.dances} />);
     }
   }
 }
